@@ -82,8 +82,14 @@ Vagrant.configure(2) do |config|
     echo 'eval "$(pyenv init -)"' >> /home/vagrant/.bashrc
     echo 'pyenv virtualenvwrapper' >> /home/vagrant/.bashrc
 
+    # Install python 3.5.1 with pyenv
+    # ...
+
     # install pygame
-    sudo apt-get install -y python-pygame
+    #svn co svn://seul.org/svn/pygame/trunk pygame
+    #cd pygame
+    #python3 setup.py build
+    #sudo python3 setup.py install
 
    SHELL
 end
