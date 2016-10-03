@@ -9,7 +9,7 @@ import pygame_sdl2
 import math
 
 
-SHIP_IMG = pygame_sdl2.image.load("whale.png")
+SHIP_IMG = "pirate_ship.png"
 SHIP_SIZE = (150, 150)
 SPEED = 3
 
@@ -28,7 +28,7 @@ class PirateShipSprite(pygame_sdl2.sprite.Sprite):
         """
         _update_
         
-        Move the ship's position, turning aroudn if we reach the screen edge.
+        Move the ship's position, turning around if we reach the screen edge.
         """
         x, y = self.position
         x_new = x + self.direction * self.speed
@@ -60,6 +60,6 @@ def get_pirate_ship(display):
     Return a group of just one ship sprite, initialized just off the top left position.
     """
     position = (10 + SHIP_SIZE[0] / 2, (display.get_rect().top + 10 + SHIP_SIZE[1] / 2))  
-    ship = PirateShipSprite('pirate_ship.png', position, display)
+    ship = PirateShipSprite(SHIP_IMG, position, display)
     ship_group = pygame_sdl2.sprite.RenderPlain(ship)
     return ship_group
