@@ -1,6 +1,8 @@
 import pygame_sdl2
 import math
 
+import pirate_ship
+
 pygame_sdl2.init()
 
 display_width = 800
@@ -26,6 +28,8 @@ MAX_SPEED = 10
 speed = 0
 rotation = 0.0
 
+ship_group = pirate_ship.get_pirate_ship(display)
+
 quit = False
 while not quit:
     clock.tick(30)
@@ -50,12 +54,17 @@ while not quit:
     position = x, y
     rotation = - speed * math.pi / 2
 
-    # RENDERING
+    # WHALE RENDERING
     rotated = pygame_sdl2.transform.rotate(whale_img, rotation)
     rect = rotated.get_rect()
     rect.center = position
     display.fill(BLUE)
     display.blit(rotated, rect)
+
+    # SHIP RENDERING
+    ship_group.update()
+    ship_group.draw(display)
+
     pygame_sdl2.display.flip()
 
 pygame_sdl2.quit()
