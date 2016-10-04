@@ -9,7 +9,6 @@ import math
 
 
 WAVE_IMG = "wave.png"
-WAVE_SIZE = (90, 90)
 SPEED = 2
 
 class WaveSprite(pygame_sdl2.sprite.Sprite):
