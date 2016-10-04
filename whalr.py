@@ -2,6 +2,7 @@ import pygame_sdl2
 import math
 
 import pirate_ship
+import waves
 
 pygame_sdl2.init()
 
@@ -29,6 +30,7 @@ speed = 0
 rotation = 0.0
 
 ship_group = pirate_ship.get_pirate_ship(display)
+wave_group = waves.get_waves(display)
 
 quit = False
 while not quit:
@@ -60,6 +62,10 @@ while not quit:
     rect.center = position
     display.fill(BLUE)
     display.blit(rotated, rect)
+
+    # WAVE RENDERING
+    wave_group.update()
+    wave_group.draw(display)
 
     # SHIP RENDERING
     ship_group.update()
