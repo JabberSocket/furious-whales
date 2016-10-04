@@ -3,6 +3,7 @@ import math
 
 import pirate_ship
 import waves
+import whale
 
 pygame_sdl2.init()
 
@@ -31,37 +32,21 @@ rotation = 0.0
 
 ship_group = pirate_ship.get_pirate_ship(display)
 wave_group = waves.get_waves(display)
+whale_group = whale.get_whale(display)
 
 quit = False
 while not quit:
     clock.tick(30)
 
     # INPUT
-    for event in pygame_sdl2.event.get():
-        if event.type == pygame_sdl2.KEYDOWN:
-            if event.key == pygame_sdl2.K_DOWN:
-                speed += ACCELERATION
-                if speed > MAX_SPEED: speed = MAX_SPEED
-                if speed < -MAX_SPEED: speed = -MAX_SPEED
-            if event.key == pygame_sdl2.K_UP:
-                speed -= ACCELERATION
-                if speed > MAX_SPEED: speed = MAX_SPEED
-                if speed < -MAX_SPEED: speed = -MAX_SPEED
-        if event.type == pygame_sdl2.QUIT:
-            quit = True
+    for event in pygame_sdl2.event.get(pygame_sdl2.QUIT):
+        quit = True
 
-    # SIMULATION
-    x, y = position
-    y = y + speed
-    position = x, y
-    rotation = - speed * math.pi / 2
+    display.fill(BLUE)
 
     # WHALE RENDERING
-    rotated = pygame_sdl2.transform.rotate(whale_img, rotation)
-    rect = rotated.get_rect()
-    rect.center = position
-    display.fill(BLUE)
-    display.blit(rotated, rect)
+    whale_group.update()
+    whale_group.draw(display)
 
     # WAVE RENDERING
     wave_group.update()
